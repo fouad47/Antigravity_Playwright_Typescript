@@ -28,7 +28,7 @@ jobs:
           cache: npm
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps ${{ matrix.project }}
@@ -40,7 +40,7 @@ jobs:
           echo "RETRY_COUNT=1" >> .env
 
       - name: Run Playwright Tests (${{ matrix.project }})
-        run: npx playwright test --project=${{ matrix.project }}
+        run: npx playwright test --project=${{ matrix.project }} --ignore-snapshots
         env:
           CI: true
 

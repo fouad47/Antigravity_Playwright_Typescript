@@ -47,6 +47,10 @@ export default defineConfig({
     'tests/**/*.spec.ts',
   ],
 
+  // Global setup and teardown
+  globalSetup: require.resolve('./src/global-setup.ts'),
+  globalTeardown: require.resolve('./src/global-teardown.ts'),
+
   // ============================================================
   // EXECUTION SETTINGS
   // ============================================================
