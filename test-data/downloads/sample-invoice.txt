@@ -1,0 +1,7 @@
+INVOICE #INV-2026-0001
+----------------------
+Bill to: Acme Corp
+Amount:  $1,234.56
+Status:  Paid
+
+(placeholder file used by the upload spec; replace with your real PDF/CSV/etc.)

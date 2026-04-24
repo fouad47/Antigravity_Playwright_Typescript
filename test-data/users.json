@@ -1,0 +1,18 @@
+{
+  "validUser": {
+    "username": "tomsmith",
+    "password": "SuperSecretPassword!"
+  },
+  "invalidUsers": [
+    {
+      "username": "wronguser",
+      "password": "SuperSecretPassword!",
+      "expectedError": "Your username is invalid!"
+    },
+    {
+      "username": "tomsmith",
+      "password": "wrongpass",
+      "expectedError": "Your password is invalid!"
+    }
+  ]
+}

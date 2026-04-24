@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+
+# Test Results & Artifacts
+test-results/
+playwright-report/
+blob-report/
+screenshots/
+videos/
+logs/*.json
+trace/
+
+# Build
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Visual Regression Baselines (track these in git)
+# !screenshots/**/*-baseline.png
+
+# Storage State (auth tokens)
+src/fixtures/.auth/

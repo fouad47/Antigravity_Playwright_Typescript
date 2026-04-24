@@ -1,0 +1,28 @@
+{
+  "name": "playwright-typescript-mastery",
+  "version": "1.0.0",
+  "description": "A comprehensive Playwright with TypeScript learning framework - from beginner to advanced, using the-internet.herokuapp.com",
+  "author": "Senior Test Automation Architect",
+  "license": "MIT",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:chapter": "npx playwright test --grep",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
+    "test:report": "npx playwright show-report",
+    "test:trace": "npx playwright show-trace",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.ts\""
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "dotenv": "^16.4.0",
+    "@faker-js/faker": "^9.3.0"
+  }
+}
