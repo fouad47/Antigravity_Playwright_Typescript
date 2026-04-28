@@ -20,16 +20,20 @@ export class DynamicControlsPage extends BasePage {
   private readonly textInput: Locator;
   private readonly message: Locator;
   private readonly loadingIndicator: Locator;
+  private readonly checkboxExample: Locator;
+  private readonly inputExample: Locator;
 
   constructor(page: Page) {
     super(page);
     this.headerText = this.page.locator('h4').first();
-    this.checkbox = this.page.locator('#checkbox input[type="checkbox"]');
+    this.checkbox = this.page.locator('#checkbox-example #checkbox, #checkbox-example input[type="checkbox"]');
     this.removeAddButton = this.page.locator('#checkbox-example button');
     this.enableDisableButton = this.page.locator('#input-example button');
     this.textInput = this.page.locator('#input-example input[type="text"]');
     this.message = this.page.locator('#message');
     this.loadingIndicator = this.page.locator('#loading');
+    this.checkboxExample = this.page.locator('#checkbox-example');
+    this.inputExample = this.page.locator('#input-example');
   }
 
   // ============================================================
@@ -43,9 +47,11 @@ export class DynamicControlsPage extends BasePage {
     const buttonText = await this.removeAddButton.textContent();
     console.log(`🔘 Clicking: ${buttonText}`);
     await this.clickElement(this.removeAddButton, 'Remove/Add button');
-    // Wait for the loading indicator to appear and then disappear
-    await this.waitForElement(this.loadingIndicator, 5000).catch(() => {});
-    await this.waitForElementHidden(this.loadingIndicator, 15000);
+    
+    // Use section-specific loading indicator
+    const indicator = this.checkboxExample.locator('#loading').first();
+    await indicator.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+    await indicator.waitFor({ state: 'hidden', timeout: 15000 });
   }
 
   /**
@@ -55,8 +61,11 @@ export class DynamicControlsPage extends BasePage {
     const buttonText = await this.enableDisableButton.textContent();
     console.log(`🔘 Clicking: ${buttonText}`);
     await this.clickElement(this.enableDisableButton, 'Enable/Disable button');
-    await this.waitForElement(this.loadingIndicator, 5000).catch(() => {});
-    await this.waitForElementHidden(this.loadingIndicator, 15000);
+    
+    // Use section-specific loading indicator
+    const indicator = this.inputExample.locator('#loading').first();
+    await indicator.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+    await indicator.waitFor({ state: 'hidden', timeout: 15000 });
   }
 
   /**

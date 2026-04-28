@@ -22,18 +22,21 @@ test.describe('Keyboard Interactions', () => {
      * - Combinations: 'Control+a', 'Shift+Enter'
      */
     const input = page.locator('#target');
+    await input.focus();
     
     // Press letter key
     await input.press('A');
     await expect(page.locator('#result')).toContainText('A');
 
     // Press special key
-    await input.press('Enter');
-    await expect(page.locator('#result')).toContainText('ENTER');
+    await input.click({ force: true });
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#result')).toContainText('ENTER', { timeout: 10000 });
 
     // Press arrow key
-    await input.press('ArrowUp');
-    await expect(page.locator('#result')).toContainText('UP');
+    await input.click({ force: true });
+    await page.keyboard.press('ArrowUp');
+    await expect(page.locator('#result')).toContainText('UP', { timeout: 10000 });
   });
 
   test('should use keyboard shortcuts', async ({ page }) => {

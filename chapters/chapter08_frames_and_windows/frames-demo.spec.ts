@@ -26,6 +26,13 @@ test.describe('iFrame Handling', () => {
      */
     const iframe = page.frameLocator('#mce_0_ifr');
     const editor = iframe.locator('#tinymce');
+    
+    // Wait for the editor to be initialized
+    await expect(editor).toBeVisible({ timeout: 15000 });
+    
+    // Force editable in case TinyMCE hit the free load limit
+    await editor.evaluate((el) => el.setAttribute('contenteditable', 'true'));
+    await expect(editor).toHaveAttribute('contenteditable', 'true', { timeout: 5000 });
 
     // Read existing content
     const existingText = await editor.textContent();

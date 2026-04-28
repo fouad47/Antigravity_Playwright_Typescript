@@ -33,7 +33,8 @@ export class KeyPressesPage extends BasePage {
    */
   async pressKey(key: string): Promise<void> {
     console.log(`⌨️ Pressing key: ${key}`);
-    await this.inputTarget.press(key);
+    await this.inputTarget.click({ force: true });
+    await this.page.keyboard.press(key);
   }
 
   /**

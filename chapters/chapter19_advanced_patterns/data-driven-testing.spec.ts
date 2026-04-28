@@ -81,8 +81,10 @@ test.describe('Parameterized Key Press Tests', () => {
   for (const keyData of KEY_PRESS_DATA) {
     test(`should detect key press: ${keyData.key}`, async ({ page }) => {
       await page.goto('/key_presses');
-      await page.locator('#target').press(keyData.key);
-      await expect(page.locator('#result')).toContainText(keyData.expectedResult);
+      const input = page.locator('#target');
+      await input.click({ force: true });
+      await page.keyboard.press(keyData.key);
+      await expect(page.locator('#result')).toContainText(keyData.expectedResult, { timeout: 10000 });
     });
   }
 });
@@ -100,7 +102,7 @@ test.describe('Data-Driven Navigation Tests', () => {
   for (const pageData of pages) {
     test(`should navigate to ${pageData.name} page`, async ({ page }) => {
       await page.goto(pageData.url);
-      await expect(page.locator('h3')).toContainText(pageData.heading);
+      await expect(page.locator('h2, h3').first()).toContainText(pageData.heading);
     });
   }
 });

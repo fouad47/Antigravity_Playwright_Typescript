@@ -60,7 +60,7 @@ test.describe('Table Data Extraction', () => {
     await page.goto('/tables');
 
     // Click "Last Name" to sort
-    await page.locator('#table1 th:text("Last Name")').click();
+    await page.locator('#table1 th').filter({ hasText: 'Last Name' }).click();
 
     // Get sorted values
     const lastNames = await page.locator('#table1 tbody tr td:nth-child(1)').allTextContents();
